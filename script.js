@@ -78,6 +78,7 @@ class Transport {
       const img = document.createElement('img');
       img.src  = `${this.image}`;
       img.alt  = 'Transport photo';
+      img.className = 'transport__img'
       img.width = 350;
       img.height = 200;
       transportField.appendChild(img);
