@@ -1,0 +1,20 @@
+.button {
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.transport__item {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.transport {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.transport__item {
+    display: flex;
+    flex-direction: column;
+}
