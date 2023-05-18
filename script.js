@@ -20,13 +20,12 @@ console.log(worker.days); //выведет 31
 console.log(worker.getSalary()); //выведет 310 — то есть 10*31
 
 
+
+
+
+
 // Задание2
 const transportField = document.querySelector('.transport'); //поле вывода инфо
-const button = document.querySelector('.transport__button'); //кнопка узнать цену
-
-
-
-
 
 
 const data = [
@@ -101,29 +100,12 @@ class Transport {
 }
 
 
-
-
-function showTransport() {
-for (let item of data) {
- let transport = new Transport (item.type, item.price, item.brand, item.image);
- transport.getImage();
- transportField.innerHTML += 
- `<div class="transport__item">
- <div class="transport__info">${transport.getInfo()}</div>
- <div class="transport__price"> ${transport.getPrice()}</div></div>`;
- }
-}
-
-showTransport();
-
-
-
 // КЛАСС CAR
 
 
 class Car extends Transport { 
-  constructor(type, price, brand) {
-    super(type, price, brand);
+  constructor(type, brand) {
+    super(type, brand);
   }
   
   
@@ -132,26 +114,49 @@ class Car extends Transport {
     }
 } 
 
-
-// ОТОБРАЖАЕМ КОЛ-ВО ДВЕРЕЙ У АВТОМОБИЛЕЙ
-
-for (let item of data) {
-  if (item.type === 'Автомобиль') {
-    let car = new Car(item.type, item.price, item.brand);
-    console.log(car);
-    const DoorNumber = car.getDoorsCount.bind(item);
-    console.log(DoorNumber());
-}
-}
-
-
+// КЛАСС BIKE
 
 class Bike extends Transport { 
-
-    getMaxSpeed() {
-
-    }
+  constructor(type, brand) {
+    super(type, brand);
+  }
+  getMaxSpeed() {
+    return `Максимальная скорость: ${this.maxSpeed} км/ч.`
+  }
 } 
+
+
+
+
+function showTransport() {
+for (let item of data) {
+ let transport = new Transport (item.type, item.price, item.brand, item.image);
+ let car = new Car(item.type, item.brand);
+ let bike = new Bike (item.type, item.brand);
+ const doorNumber = car.getDoorsCount.bind(item);
+ const bikeMaxSpeed = bike.getMaxSpeed.bind(item);
+
+ transport.getImage();
+ 
+ if (item.type === 'car') {
+ transportField.innerHTML += 
+ `<div class="transport__item">
+ <div class="transport__info">${transport.getInfo()}</div>
+ <div class="transport__doors">${doorNumber()}</div>
+ <div class="transport__price"> ${transport.getPrice()}</div></div>`;
+} 
+
+else if (item.type === 'bike') {
+  transportField.innerHTML += 
+ `<div class="transport__item">
+ <div class="transport__info">${transport.getInfo()}</div>
+ <div class="transport__speed"> ${bikeMaxSpeed()} </div>
+ <div class="transport__price"> ${transport.getPrice()}</div></div>`;
+}
+ }
+}
+
+showTransport();
 
 
 
