@@ -105,8 +105,8 @@ class Transport {
 
 
 class Car extends Transport { 
-  constructor(type, brand) {
-    super(type, brand);
+  constructor(type, price, brand, image) {
+    super(type, price, brand, image);
   }
   
   
@@ -118,8 +118,8 @@ class Car extends Transport {
 // КЛАСС BIKE
 
 class Bike extends Transport { 
-  constructor(type, brand) {
-    super(type, brand);
+  constructor(type, price, brand, image) {
+    super(type, price, brand, image);
   }
   getMaxSpeed() {
     return `Максимальная скорость: ${this.maxSpeed} км/ч.`
